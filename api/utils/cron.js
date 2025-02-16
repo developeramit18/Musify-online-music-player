@@ -1,7 +1,7 @@
 import cron from 'cron';
 import https from 'https';
 
-const URL = 'https:instagram-cpns.onrender.com';
+const URL = 'https://musify-music-player.onrender.com/';
 
 const job = new cron.CronJob("*/15 * * * *", () => {
       https.get(URL, (res) => {
