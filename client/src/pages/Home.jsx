@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import { useRef } from "react";
 import { FaChevronLeft, FaChevronRight, FaPlay } from "react-icons/fa";
 import PlaylistCard from "../components/PlaylistCard";
-import TopTracks from "../components/topTracks";
+import TopTracks from "../components/TopTracks";
 
 export default function Home() {
   const [loading, setLoading] = useState(false);
