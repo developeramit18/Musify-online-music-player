@@ -122,7 +122,7 @@ export const forgotPassword = async(req,res,next) =>{
         await user.save();
     
         // Send email with reset link
-        const resetLink = `${process.env.FRONTEND_URL}/reset-password/${resetToken}`;
+        const resetLink = `${process.env.FRONTEND_URL}reset-password/${resetToken}`;
         await transporter.sendMail({
           to: email,
           subject: "Reset your password for musify",
