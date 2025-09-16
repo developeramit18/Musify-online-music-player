@@ -49,7 +49,11 @@ export const dashboard = async (req, res, next) => {
     }
 
     const Now = new Date();
-    const oneMonthAgo = new Date(Now.getFullYear(), Now.getMonth() - 1, Now.getDate());
+    const oneMonthAgo = new Date(
+      Now.getFullYear(),
+      Now.getMonth() - 1,
+      Now.getDate()
+    );
 
     const [
       totalSongs,
@@ -116,6 +120,51 @@ export const dashboard = async (req, res, next) => {
       lastMonthUsers,
       totalSize,
     });
+  } catch (error) {
+    next(error);
+  }
+};
+export const getUsers = async (_, res, next) => {
+  try {
+    const [totalUsers, users] = await Promise.all([
+      User.countDocuments({}),
+      User.find({}).select("-password").lean(),
+    ]);
+    res.status(200).json({ totalUsers, users });
+  } catch (error) {
+    next(error);
+  }
+};
+export const deleteUser = async (req, res, next) => {
+  try {
+    const { userId } = req.params;
+    const user = await User.findByIdAndDelete(userId);
+    if (!user) {
+      return next(errorHandler(404, "User not found"));
+    }
+    await redis.del("totalUsers");
+    res.status(200).json({ msg: "User deleted successfully" });
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const updateUserRole = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const { role } = req.body;
+    const isAdmin = role === "Admin";
+    const updatedUser = await User.findByIdAndUpdate(
+      id,
+      { isAdmin },
+      { new: true, runValidators: true }
+    );
+    if (!updatedUser) {
+      return next(errorHandler(404, "User not found"));
+    }
+    res
+      .status(200)
+      .json({ message: "User role updated successfully", updatedUser });
   } catch (error) {
     next(error);
   }
