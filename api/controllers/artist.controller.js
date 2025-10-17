@@ -1,5 +1,5 @@
 import { bucket } from "../lib/firebase.js";
-import { redis } from "../lib/redis.js";
+// import { redis } from "../lib/redis.js";
 import Artist from "../models/artist.model.js";
 import { errorHandler } from "../utils/errorHandler.js";
 
@@ -19,8 +19,8 @@ export const addNewArtist = async (req, res, next) => {
 
     await newArtist.save();
 
-    await redis.del("totalArtists");
-    await redis.del("lastMonthArtists");
+    // await redis.del("totalArtists");
+    // await redis.del("lastMonthArtists");
 
     res.status(201).json({ message: "Artist added successfully!", artist: newArtist });
 
@@ -121,8 +121,8 @@ export const deleteArtist = async (req, res, next) => {
         }
       await Artist.findByIdAndDelete(artist._id);
 
-      await redis.del("totalArtists");
-      await redis.del("lastMonthArtists");
+      // await redis.del("totalArtists");
+      // await redis.del("lastMonthArtists");
       
       const updatedArtists = await Artist.find();
       return res.status(200).json({ msg: 'Artist deleted successfully', artists:updatedArtists });

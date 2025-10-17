@@ -1,5 +1,5 @@
 import { bucket } from "../lib/firebase.js";
-import { redis } from "../lib/redis.js";
+// import { redis } from "../lib/redis.js";
 import Artist from "../models/artist.model.js";
 import Song from "../models/song.model.js";
 import User from "../models/user.model.js";
@@ -7,46 +7,46 @@ import { errorHandler } from "../utils/errorHandler.js";
 
 export const dashboard = async (req, res, next) => {
   try {
-    let cachedData;
-    try {
-      cachedData = await redis.mget(
-        "totalSongs",
-        "totalArtists",
-        "totalUsers",
-        "lastMonthSongs",
-        "recentlyAddedSongs",
-        "recentlyAddedArtist",
-        "lastMonthUsers",
-        "totalSize"
-      );
-    } catch (e) {
-      console.warn("Redis unavailable, falling back to DB...");
-      cachedData = [];
-    }
+    // let cachedData;
+    // try {
+    //   cachedData = await redis.mget(
+    //     "totalSongs",
+    //     "totalArtists",
+    //     "totalUsers",
+    //     "lastMonthSongs",
+    //     "recentlyAddedSongs",
+    //     "recentlyAddedArtist",
+    //     "lastMonthUsers",
+    //     "totalSize"
+    //   );
+    // } catch (e) {
+    //   console.warn("Redis unavailable, falling back to DB...");
+    //   cachedData = [];
+    // }
 
-    if (cachedData.length && cachedData.every((value) => value !== null)) {
-      const [
-        totalSongs,
-        totalArtists,
-        totalUsers,
-        lastMonthSongs,
-        recentlyAddedSongs,
-        recentlyAddedArtist,
-        lastMonthUsers,
-        totalSize,
-      ] = cachedData;
+    // if (cachedData.length && cachedData.every((value) => value !== null)) {
+    //   const [
+    //     totalSongs,
+    //     totalArtists,
+    //     totalUsers,
+    //     lastMonthSongs,
+    //     recentlyAddedSongs,
+    //     recentlyAddedArtist,
+    //     lastMonthUsers,
+    //     totalSize,
+    //   ] = cachedData;
 
-      return res.status(200).json({
-        totalSongs: Number(totalSongs),
-        totalArtists: Number(totalArtists),
-        totalUsers: Number(totalUsers),
-        lastMonthSongs: Number(lastMonthSongs),
-        recentlyAddedSongs: JSON.parse(recentlyAddedSongs),
-        recentlyAddedArtist: JSON.parse(recentlyAddedArtist),
-        lastMonthUsers: Number(lastMonthUsers),
-        totalSize: Number(totalSize),
-      });
-    }
+    //   return res.status(200).json({
+    //     totalSongs: Number(totalSongs),
+    //     totalArtists: Number(totalArtists),
+    //     totalUsers: Number(totalUsers),
+    //     lastMonthSongs: Number(lastMonthSongs),
+    //     recentlyAddedSongs: JSON.parse(recentlyAddedSongs),
+    //     recentlyAddedArtist: JSON.parse(recentlyAddedArtist),
+    //     lastMonthUsers: Number(lastMonthUsers),
+    //     totalSize: Number(totalSize),
+    //   });
+    // }
 
     const Now = new Date();
     const oneMonthAgo = new Date(
@@ -82,33 +82,33 @@ export const dashboard = async (req, res, next) => {
     }
 
     // Cache in Redis (fail silently if Redis is down)
-    try {
-      await redis.mset({
-        totalSongs,
-        totalArtists,
-        totalUsers,
-        lastMonthSongs,
-        recentlyAddedSongs: JSON.stringify(recentlyAddedSongs),
-        recentlyAddedArtist: JSON.stringify(recentlyAddedArtist),
-        lastMonthUsers,
-        totalSize,
-      });
+    // try {
+    //   await redis.mset({
+    //     totalSongs,
+    //     totalArtists,
+    //     totalUsers,
+    //     lastMonthSongs,
+    //     recentlyAddedSongs: JSON.stringify(recentlyAddedSongs),
+    //     recentlyAddedArtist: JSON.stringify(recentlyAddedArtist),
+    //     lastMonthUsers,
+    //     totalSize,
+    //   });
 
-      const TTL = 3600; // 1 hour
-      const keys = [
-        "totalSongs",
-        "totalArtists",
-        "totalUsers",
-        "lastMonthSongs",
-        "recentlyAddedSongs",
-        "recentlyAddedArtist",
-        "lastMonthUsers",
-        "totalSize",
-      ];
-      await Promise.all(keys.map((key) => redis.expire(key, TTL)));
-    } catch (e) {
-      console.warn("Redis cache write failed:", e.message);
-    }
+    //   const TTL = 3600; // 1 hour
+    //   const keys = [
+    //     "totalSongs",
+    //     "totalArtists",
+    //     "totalUsers",
+    //     "lastMonthSongs",
+    //     "recentlyAddedSongs",
+    //     "recentlyAddedArtist",
+    //     "lastMonthUsers",
+    //     "totalSize",
+    //   ];
+    //   await Promise.all(keys.map((key) => redis.expire(key, TTL)));
+    // } catch (e) {
+    //   console.warn("Redis cache write failed:", e.message);
+    // }
 
     return res.status(200).json({
       totalSongs,
@@ -142,7 +142,7 @@ export const deleteUser = async (req, res, next) => {
     if (!user) {
       return next(errorHandler(404, "User not found"));
     }
-    await redis.del("totalUsers");
+    // await redis.del("totalUsers");
     res.status(200).json({ msg: "User deleted successfully" });
   } catch (error) {
     next(error);

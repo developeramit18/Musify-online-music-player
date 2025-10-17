@@ -1,7 +1,7 @@
 import UserModel from '../models/user.model.js';
 import bcrypt from 'bcryptjs';
 import { errorHandler } from '../utils/errorHandler.js';
-import {redis} from '../lib/redis.js'
+// import {redis} from '../lib/redis.js'
 import jwt from 'jsonwebtoken'
 import dotenv from 'dotenv'
 import crypto from "crypto";
@@ -42,8 +42,8 @@ export const signup = async (req, res, next) => {
     try {
         await newUser.save();
 
-        await redis.del("totalUsers");
-        await redis.del("lastMonthUsers");
+        // await redis.del("totalUsers");
+        // await redis.del("lastMonthUsers");
 
         const user = await UserModel.findOne({ email })
         .select('name isAdmin liked_songs')

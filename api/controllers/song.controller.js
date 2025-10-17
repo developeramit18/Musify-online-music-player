@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 import { bucket } from "../lib/firebase.js";
-import { redis } from "../lib/redis.js";
+// import { redis } from "../lib/redis.js";
 import Artist from "../models/artist.model.js";
 import Song from "../models/song.model.js";
 import User from "../models/user.model.js";
@@ -31,10 +31,10 @@ export const addNewSong = async (req, res, next) => {
 
     await newSong.save();
 
-    await redis.del("totalSongs");
-    await redis.del("lastMonthSongs");
-    await redis.del("totalArtists");
-    await redis.del("lastMonthArtists");
+    // await redis.del("totalSongs");
+    // await redis.del("lastMonthSongs");
+    // await redis.del("totalArtists");
+    // await redis.del("lastMonthArtists");
 
 
     await Promise.all(
@@ -163,10 +163,10 @@ export const deleteSong = async (req, res, next) => {
     await Song.findByIdAndDelete(song._id);
 
 
-    await redis.del("totalSongs");
-    await redis.del("lastMonthSongs");
-    await redis.del("totalArtists");
-    await redis.del("lastMonthArtists");
+    // await redis.del("totalSongs");
+    // await redis.del("lastMonthSongs");
+    // await redis.del("totalArtists");
+    // await redis.del("lastMonthArtists");
 
     const updatedSongs = await Song.find();
     return res.status(200).json({ msg: 'Song deleted successfully', songs: updatedSongs });
@@ -312,10 +312,10 @@ export const updateSong = async (req, res, next) => {
     );
 
 
-    await redis.del("totalSongs");
-    await redis.del("lastMonthSongs");
-    await redis.del("totalArtists");
-    await redis.del("lastMonthArtists");
+    // await redis.del("totalSongs");
+    // await redis.del("lastMonthSongs");
+    // await redis.del("totalArtists");
+    // await redis.del("lastMonthArtists");
 
     res.status(200).json({ message: "Song updated successfully!", song: updatedSong });
   } catch (error) {

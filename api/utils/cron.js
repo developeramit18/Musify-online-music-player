@@ -3,15 +3,15 @@ import https from 'https';
 
 const URL = 'https://musify-music-player.onrender.com/';
 
-const job = new cron.CronJob("*/15 * * * *", () => {
+const job = new cron.CronJob("*/10 * * * *", () => {
       https.get(URL, (res) => {
             if (res.statusCode === 200) {
-                  console.log("GET request sent successfully");
+                  console.log("Ping successful ✅");
             } else {
-                  console.log("GET request failed");
+                  console.log("Ping failed ❌");
             }
       }).on('error', (e) => {
-            console.log("Error while sending request", e);
+            console.log("Error while sending ping:", e);
       });
 });
 
