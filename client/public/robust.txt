@@ -1,9 +1,9 @@
-# Allow all search engines to crawl your site
+# Allow all search engines to crawl the site
 User-agent: *
-Disallow: /system/
-Disallow: /vendor/
 Disallow: /node_modules/
-Disallow: /storage/
+Disallow: /server/
+Disallow: /config/
+Disallow: /logs/
 
 # Sitemap location
-Sitemap: https://musify-music-player.onrender.com/
+Sitemap: https://musify-music-player.onrender.com/sitemap.xml
