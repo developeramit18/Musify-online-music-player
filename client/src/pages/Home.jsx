@@ -93,6 +93,7 @@ export default function Home() {
           {/* Left Scroll Icon */}
           {showLeftIcon && (
             <button
+            aria-label="scroll-left"
               onClick={() => scroll("left")}
               className="absolute left-2 top-1/2 transform -translate-y-1/2 z-10 bg-gray-100 p-2 rounded-full shadow-md hover:bg-gray-200"
             >
@@ -133,6 +134,7 @@ export default function Home() {
           {/* Right Scroll Icon */}
           {showRightIcon && (
             <button
+            aria-label="scroll-right"
               onClick={() => scroll("right")}
               className="absolute right-2 top-1/2 transform -translate-y-1/2 z-10 bg-gray-100 p-2 rounded-full shadow-md hover:bg-gray-200"
             >

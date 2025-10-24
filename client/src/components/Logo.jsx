@@ -11,7 +11,7 @@ export default function Logo({ size }) {
   };
 
   return (
-    <div className='flex items-center'>
+    <div className='flex items-center' aria-label='musify-music-player'>
         <RiNeteaseCloudMusicFill className={`text-[#ffcd2b] ${sizeClass[size]}`} />
     </div>
   )
