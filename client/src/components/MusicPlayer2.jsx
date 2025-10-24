@@ -10,6 +10,7 @@ import { FaPauseCircle, FaPlayCircle } from "react-icons/fa";
 import { MdClose } from "react-icons/md";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { IoMdArrowRoundBack } from "react-icons/io";
 
 export default function MusicPlayer2({
   song,
@@ -41,11 +42,10 @@ export default function MusicPlayer2({
       <div className="w-full h-full flex flex-col justify-between">
         {/* Header */}
         <div
-          className="self-end flex gap-1 border border-black p-2 cursor-pointer rounded-md"
+          className="self-start flex gap-1 cursor-pointer rounded-md"
           onClick={() => setIsFullscreen(false)}
         >
-          Close
-          <MdClose className="text-2xl" />
+         <IoMdArrowRoundBack className="text-2xl"/>
         </div>
 
         {/* Song Thumbnail */}
@@ -56,6 +56,7 @@ export default function MusicPlayer2({
               "https://firebasestorage.googleapis.com/v0/b/music-player-48afa.appspot.com/o/Others%2Fthumb.png?alt=media&token=2291d13e-a7c9-466e-9fc8-b189c8b5201a"
             }
             className="w-full h-fit rounded-xl"
+            onContextMenu={(e)=>e.preventDefault()}
             alt="Thumbnail"
           />
         </div>
@@ -146,13 +147,13 @@ export default function MusicPlayer2({
                   e.stopPropagation();
                   handlePrevious();
                 }}
-                className="text-4xl"
+                className={`text-3xl sm:text-4xl`}
                 title="Previous"
               />
               {!playSong ? (
                 <FaPlayCircle
                   onClick={toggleMusic}
-                  className="text-4xl"
+                  className={`text-3xl sm:text-4xl`}
                   title="Play"
                 />
               ) : (
@@ -167,7 +168,7 @@ export default function MusicPlayer2({
                   e.stopPropagation();
                   handleNext();
                 }}
-                className="text-4xl"
+                className={`text-3xl sm:text-4xl `}
                 title="Next"
               />
             </div>

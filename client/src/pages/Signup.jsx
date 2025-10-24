@@ -68,7 +68,7 @@ export default function Signup() {
 }
   return (
     <div className="w-screen h-screen flex justify-center items-center">
-      <div className="max-w-md lg:shadow-[0px_0px_4px_#555454] w-full flex flex-col items-center p-4 gap-4">
+      <div className="max-w-md dark:shadow-[0px_0px_4px_#a1a1a1] shadow-[0px_0px_4px_#555454] w-full flex flex-col items-center p-4 gap-4">
         <Logo  size={'extraLarge'}/>
         <h1 className="font-bold text-xl md:text-3xl -mt-2 text-center">
           Sign up to start listening
@@ -132,10 +132,10 @@ export default function Signup() {
           <div className="w-full bg-slate-200 h-[2px]"></div>
           
           <div className="flex items-center justify-center text-md gap-1">
-            <p className="text-black/90 font-medium">
+            <p className="text-black/90 font-medium dark:text-white/90">
               Already have an account?
             </p>
-            <Link className="underline text-black font-bold" to={"/signin"} replace={true}>
+            <Link className="underline text-black dark:text-white font-bold" to={"/signin"} replace={true}>
               Log in here
             </Link>
           </div>

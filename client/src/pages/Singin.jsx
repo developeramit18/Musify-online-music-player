@@ -64,7 +64,7 @@ export default function Signin() {
   };
   return (
     <div className="w-screen h-screen flex justify-center items-center">
-      <div className="max-w-md lg:shadow-[0px_0px_4px_#555454] w-full flex flex-col items-center p-4 gap-4">
+      <div className="max-w-md dark:shadow-[0px_0px_4px_#a1a1a1] shadow-[0px_0px_4px_#555454] w-full flex flex-col items-center p-4 gap-4">
         <div className="flex items-center gap-2">
           <Logo size={'large'} />
           <h1 className="text-2xl font-semibold">
@@ -128,7 +128,7 @@ export default function Signin() {
           <Link
             to={"/signup"}
             replace={true}
-            className="w-full text-center text-black border border-black/40 text-black/40 py-2 uppercase text-md rounded-md font-semibold"
+            className="w-full text-center text-black dark:text-white border border-black/40 dark:border-white/40 text-black/40 py-2 uppercase text-md rounded-md font-semibold"
           >
             Sign up for musify
           </Link>

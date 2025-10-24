@@ -5,7 +5,7 @@ import { IoPlaySkipBack, IoPlaySkipForward } from "react-icons/io5";
 export default function MusicButton({playSong, toggleMusic, handleNext, handlePrevious}) {
 
     return (
-        <div className="flex items-center gap-6 text-3xl">
+        <div className="flex items-center gap-6 text-3xl text-black">
             <IoPlaySkipBack
                 onClick={(e)=>{
                     e.stopPropagation();

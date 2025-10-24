@@ -49,6 +49,7 @@ export default function Header() {
         const response = await axios.get(
           `/api/song/search?searchTerm=${search}`
         );
+        console.log(response)
         if (response.status === 200) {
           setSearchedData(response.data);
         }
@@ -103,7 +104,7 @@ export default function Header() {
           <input
             type="text"
             value={search}
-            className={`hidden md:flex flex-1 bg-transparent text-white placeholder:text-white/70 outline-none focus:outline-none`}
+            className={`hidden md:flex flex-1 dark:bg-white bg-transparent text-white placeholder:text-white/70 outline-none focus:outline-none`}
             placeholder="What do you want to play?"
             onChange={(e) => setSearch(e.target.value)}
           />
@@ -169,7 +170,7 @@ export default function Header() {
       )}
 
       <div
-        className="lg:hidden cursor-pointer"
+        className="lg:hidden cursor-pointer text-black"
         onClick={() => setMenuOpen(!menuOpen)}
       >
         {menuOpen ? (

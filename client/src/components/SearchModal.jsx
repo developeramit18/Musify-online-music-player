@@ -59,7 +59,7 @@ export default function SearchModal({ showSearchModal, setShowSearchModal, searc
         <input
           type="text"
           placeholder="What do you want to play"
-          className="outline-none border border-black w-full mt-4 px-2 py-3 rounded-sm"
+          className="outline-none dark:bg-white border border-black w-full mt-4 px-2 py-3 rounded-sm"
           value={search}
           onChange={(e) => {
             setSearch(e.target.value);

@@ -131,7 +131,7 @@ export default function PlaylistPage() {
   };
 
   return (
-    <div className="w-full rounded-md overflow-y-auto noScrollbar">
+    <div className="w-full rounded-md overflow-y-auto noScrollbar text-black">
       {loading ? (
         <Loader/>
       ) : (
