@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Logo from "../components/Logo";
 import axios from "axios";
 import { toast } from "react-toastify";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function ForgotPassword() {
   const [email, setEmail] = useState('');
@@ -41,14 +41,14 @@ export default function ForgotPassword() {
     }
   };
   return (
-    <div className="w-screen h-screen flex justify-center items-center">
-      <div className="max-w-md lg:shadow-[0px_0px_4px_#555454] w-full flex flex-col items-center p-4 gap-4">
-        <div className="flex items-center gap-2 mt-4">
+    <div className="w-screen h-screen flex justify-center items-center" style={{background:"linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('musify-bg.jpg')", backgroundRepeat:'no-repeat', backgroundSize:'cover'}}>
+      <div className="max-w-md lg:shadow-[0px_0px_4px_#555454] w-full bg-white rounded-md flex flex-col items-center p-4 gap-4">
+        <Link to={'/'} className="flex items-center gap-2 mt-4">
           <Logo size={'large'} />
           <h1 className="text-2xl font-semibold">
             Musify<sup className="text-sm">®</sup>
           </h1>
-        </div>
+        </Link>
         <h2 className="text-2xl md:text-3xl font-bold">Reset your password</h2>
         <p className="text-center font-medium">Enter your linked email address to your Musify account and we'll send you an email.</p>
         <form

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Logo from "../components/Logo";
 import axios from "axios";
 import { toast } from "react-toastify";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { VscEye, VscEyeClosed } from "react-icons/vsc";
 import { useDispatch } from "react-redux";
 import { signInSuccess } from "../redux/slices/userSlice";
@@ -71,14 +71,14 @@ navigate("/reset-password/success");
     }
   };
   return (
-    <div className="w-screen h-screen flex justify-center items-center">
-      <div className="max-w-md lg:shadow-[0px_0px_4px_#555454] w-full flex flex-col items-center p-4 py-8 gap-4">
-        <div className="flex items-center gap-2">
+    <div className="w-screen h-screen flex justify-center items-center" style={{background:"linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('/musify-bg.jpg')", backgroundRepeat:'no-repeat', backgroundSize:'cover'}}>
+      <div className="max-w-md lg:shadow-[0px_0px_4px_#555454] bg-white rounded-md w-full flex flex-col items-center p-4 py-8 gap-4">
+        <Link to={'/'} className="flex items-center gap-2">
           <Logo size={"large"} />
           <h1 className="text-2xl font-semibold">
             Musify<sup className="text-sm">®</sup>
           </h1>
-        </div>
+        </Link>
         <h2 className="text-2xl md:text-3xl font-bold">Create new password</h2>
         <p className="text-center font-medium">
           Please enter your new password below for your Musify account

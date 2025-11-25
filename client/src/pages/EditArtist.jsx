@@ -30,7 +30,7 @@ export default function EditArtist() {
     try {
       const response = await axios.get(`/api/artist/${artistId}`);
       if (response.status === 200) {
-        setArtistData(response.data);
+        setArtistData(response.data.artist);
       }
     } catch (error) {
       toast.error(error);
@@ -141,6 +141,7 @@ export default function EditArtist() {
             handleArtistPicUpload={handleArtistPicUpload}
           />
         </div>
+        {console.log(artistData)}
         <div className="flex flex-col w-fit h-fit p-2 gap-2 border-2 border-dotted border-[#ffcd2b]">
           <PicPreview url={artistData.pic} />
           <h3 className="text-center font-semibold">Current artist pic*</h3>

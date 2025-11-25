@@ -34,42 +34,60 @@ export default function Signup() {
     }));
   };
 
-  const handleSubmit = async(e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if ( !signupData.name ||!signupData.email || !signupData.password || signupData.email === "" || signupData.password === "" || signupData.name === "") {
-        if (!toast.isActive(toastId)) {
-            toast.error("All fields are required", { toastId })
-        }
-        return
+    if (
+      !signupData.name ||
+      !signupData.email ||
+      !signupData.password ||
+      signupData.email === "" ||
+      signupData.password === "" ||
+      signupData.name === ""
+    ) {
+      if (!toast.isActive(toastId)) {
+        toast.error("All fields are required", { toastId });
+      }
+      return;
     }
 
     try {
-        dispatch(signInStart())
-        const response = await axios.post('/api/auth/signup', signupData, {withCredentials:true});
+      dispatch(signInStart());
+      const response = await axios.post("/api/auth/signup", signupData, {
+        withCredentials: true,
+      });
 
-        if(response.status === 201) {
-            dispatch(signInSuccess(response.data.user))
-            toast.success('signup success')
-            navigate('/')                
-        }
-        else{
-            dispatch(signInFailure(response.data.message))
-            if (!toast.isActive(toastId)) {
-                toast.error(response.data.message, { toastId })
-            }
-        }
-    } catch (error) {
-        dispatch(signInFailure(error.response.data.message))
+      if (response.status === 201) {
+        dispatch(signInSuccess(response.data.user));
+        toast.success("signup success");
+        navigate("/");
+      } else {
+        dispatch(signInFailure(response.data.message));
         if (!toast.isActive(toastId)) {
-            toast.error(error.response.data.message, { toastId })
+          toast.error(response.data.message, { toastId });
         }
-    }    
-}
+      }
+    } catch (error) {
+      dispatch(signInFailure(error.response.data.message));
+      if (!toast.isActive(toastId)) {
+        toast.error(error.response.data.message, { toastId });
+      }
+    }
+  };
   return (
-    <div className="w-screen h-screen flex justify-center items-center">
-      <div className="max-w-md dark:shadow-[0px_0px_4px_#a1a1a1] shadow-[0px_0px_4px_#555454] w-full flex flex-col items-center p-4 gap-4">
-        <Logo  size={'extraLarge'}/>
+    <div
+      className="w-screen h-screen flex justify-center items-center"
+      style={{
+        background:
+          "linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('musify-bg.jpg')",
+        backgroundRepeat: "no-repeat",
+        backgroundSize: "cover",
+      }}
+    >
+      <div className="max-w-md dark:shadow-[0px_0px_4px_#a1a1a1] bg-white rounded-md shadow-[0px_0px_4px_#555454] w-full flex flex-col items-center p-4 gap-4">
+        <Link to={"/"}>
+          <Logo size={"extraLarge"} />
+        </Link>
         <h1 className="font-bold text-xl md:text-3xl -mt-2 text-center">
           Sign up to start listening
         </h1>
@@ -128,14 +146,18 @@ export default function Signup() {
           >
             {loading ? "Loading..." : "Sign up"}
           </button>
-              {/* A devider */}
+          {/* A devider */}
           <div className="w-full bg-slate-200 h-[2px]"></div>
-          
+
           <div className="flex items-center justify-center text-md gap-1">
             <p className="text-black/90 font-medium dark:text-white/90">
               Already have an account?
             </p>
-            <Link className="underline text-black dark:text-white font-bold" to={"/signin"} replace={true}>
+            <Link
+              className="underline text-black dark:text-white font-bold"
+              to={"/signin"}
+              replace={true}
+            >
               Log in here
             </Link>
           </div>
