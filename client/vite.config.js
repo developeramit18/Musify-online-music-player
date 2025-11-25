@@ -13,32 +13,36 @@ export default defineConfig({
       }
     }
   },
-  plugins: [
-    react(),
-    VitePWA({
-      registerType: "autoUpdate",
-      includeAssets: ["favicon.ico", "apple-touch-icon.png", "robots.txt"],
-      manifest: {
-        name: "Musify Music Player",
-        short_name: "Musify",
-        theme_color: "#ffcd2b",
-        background_color: "#ffffff",
-        display: "standalone",
-        orientation: "portrait",
-        start_url: "/",
-        icons: [
-          {
-            src: "/icons/icon-192x192.png",
-            sizes: "192x192",
-            type: "image/png",
-          },
-          {
-            src: "/icons/icon-512x512.png",
-            sizes: "512x512",
-            type: "image/png",
-          },
-        ],
-      },
-    }),
-  ],
+ plugins: [
+  react(),
+  VitePWA({
+    registerType: "autoUpdate",
+    includeAssets: ["favicon.ico", "apple-touch-icon.png", "robots.txt"],
+    manifest: {
+      name: "Musify Music Player",
+      short_name: "Musify",
+      description: "Let's start listening to music with Musify",
+      start_url: "./",
+      display: "standalone",
+      background_color: "#ffffff",
+      theme_color: "#ffcd2b",
+      orientation: "portrait",
+      icons: [
+        {
+          src: "/icons/icon-192x192.png",
+          sizes: "192x192",
+          type: "image/png",
+          purpose: "any"
+        },
+        {
+          src: "/icons/icon-512x512.png",
+          sizes: "512x512",
+          type: "image/png",
+          purpose: "maskable"
+        }
+      ],
+    }
+  }),
+]
+
 })

@@ -2,7 +2,7 @@
   "name": "Musify Music Player",
   "short_name": "Musify",
   "description": "Let's start the listening music with musify",
-  "start_url": "/",
+  "start_url": "./",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#ffcd2b",
@@ -18,7 +18,7 @@
       "src": "/icons/icon-512x512.png",
       "sizes": "512x512",
       "type": "image/png",
-      "purpose": "any maskable"
+      "purpose": "maskable"
     }
   ]
 }
