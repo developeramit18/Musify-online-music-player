@@ -1,6 +1,6 @@
 {
-  "name": "MyWebSite",
-  "short_name": "MySite",
+  "name": "Musify Music Player",
+  "short_name": "Musify",
   "icons": [
     {
       "src": "/web-app-manifest-192x192.png",
