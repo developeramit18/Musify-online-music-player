@@ -40,12 +40,12 @@ export default function SearchModal({ showSearchModal, setShowSearchModal, searc
       onClick={() => setShowSearchModal(false)}
     >
       <div
-        className="absolute top-0 left-1/2 transform -translate-x-1/2 bg-white w-full max-w-2xl mx-auto p-4 rounded-b-lg shadow-lg"
+        className="absolute top-0 left-1/2 transform -translate-x-1/2 bg-white dark:bg-gray-500 dark:text-white w-full max-w-2xl mx-auto p-4 rounded-b-lg shadow-lg"
         onClick={(e) => e.stopPropagation()}
       >
         {/* ✕ Close Button in the Top-Right Corner of the Modal Header */}
         <button
-          className="absolute top-3 right-3 text-gray-600 hover:text-black text-xl"
+          className="absolute top-3 right-3 text-gray-600 dark:text-white/60 dark:hover:text-white hover:text-black text-xl"
           onClick={() => setShowSearchModal(false)}
         >
           ✕
@@ -59,7 +59,7 @@ export default function SearchModal({ showSearchModal, setShowSearchModal, searc
         <input
           type="text"
           placeholder="What do you want to play"
-          className="outline-none dark:bg-white border border-black w-full mt-4 px-2 py-3 rounded-sm"
+          className="outline-none dark:bg-white border border-black w-full mt-4 px-2 py-3 rounded-sm text-black"
           value={search}
           onChange={(e) => {
             setSearch(e.target.value);
@@ -72,7 +72,7 @@ export default function SearchModal({ showSearchModal, setShowSearchModal, searc
                 <Loader />
               </div>
             ) : showSearchData && searchedData.length > 0 ? (
-              <div className="w-full max-h-[300px] overflow-y-auto text-black p-2 rounded-b-lg">
+              <div className="w-full max-h-[300px] overflow-y-auto text-black dark:text-white p-2 rounded-b-lg">
                 {searchedData.map((song) => (
                   <p
                     key={song._id}

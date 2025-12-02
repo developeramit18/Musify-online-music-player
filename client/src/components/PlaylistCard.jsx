@@ -21,7 +21,7 @@ export default function PlaylistCard({playlist}) {
       }
 
   return (
-    <Link to={`/playlist/${playlist._id}`} className='flex flex-col items-center p-2 md:p-4 gap-2 cursor-pointer group relative bg-gray-100 hover:bg-gray-300 rounded-md'>
+    <Link to={`/playlist/${playlist._id}`} className='flex flex-col items-center p-2 md:p-4 gap-2 cursor-pointer group relative bg-gray-100 dark:bg-gray-500 dark:hover:bg-gray-500 hover:bg-gray-300 rounded-md'>
         <img src={playlist.thumbnail} alt={playlist.name} onContextMenu={(e)=>e.preventDefault()} className='w-44 h-44 object-cover' />
         <h3 className='font-semibold text-md'>{playlist.name}</h3>
         <button

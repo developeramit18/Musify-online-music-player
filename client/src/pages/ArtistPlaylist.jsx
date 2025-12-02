@@ -11,6 +11,7 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { addSongs } from "../redux/slices/songSlice";
 import { signInSuccess } from "../redux/slices/userSlice";
+import { Loader } from "../components";
 
 export default function ArtistPlaylist() {
   const { artistId } = useParams();
@@ -136,7 +137,7 @@ export default function ArtistPlaylist() {
   return (
     <div className="w-full rounded-md overflow-y-auto noScrollbar">
       {loading ? (
-        <h3>Loading...</h3>
+        <Loader/>
       ) : (
         <div>
           <div className="relative w-full h-72">
@@ -159,13 +160,13 @@ export default function ArtistPlaylist() {
               <FaPlay className="w-4 h-4" />
             </button>
           </div>
-          <div className="flex flex-col gap-2 px-0 sm:px-1 md:px-4">
+          <div className="flex flex-col gap-2 px-0 sm:px-1 md:px-4 dark:text-white">
             <h2 className="text-2xl font-semibold">Songs</h2>
-            <div className="flex flex-col gap-2">
+            <div className="flex flex-col gap-2 pb-3">
               {artistData.songs &&
                 artistData.songs.map((song, index) => (
                   <div
-                    className="flex items-center justify-between py-2 md:py-4 px-2 md:px-6 cursor-pointer group hover:bg-gray-200 rounded-md"
+                    className="flex items-center justify-between py-2 md:py-4 px-2 md:px-6 cursor-pointer group dark:hover:bg-gray-400 hover:bg-gray-200 rounded-md"
                     key={song._id}
                   >
                     <div

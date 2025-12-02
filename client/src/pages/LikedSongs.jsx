@@ -38,7 +38,7 @@ export default function LikedSongs() {
 
   return (
     <div className="w-full ">
-      <div className="flex justify-between items-center text-lg sticky z-20 top-0 p-4 bg-gray-100">
+      <div className="flex justify-between items-center text-lg sticky z-20 top-0 p-4 bg-gray-100 dark:bg-gray-500 dark:text-white">
         <div className="flex items-center gap-4">
           <BiSolidPlaylist className="text-2xl" />
           <h3 className="font-bold">Liked Songs</h3>
@@ -59,7 +59,7 @@ export default function LikedSongs() {
           userState?.user?.liked_songs?.map((song, index) => (
             <div
               key={song._id + index}
-              className="px-2 py-3 w-full cursor-pointer group hover:bg-gray-200 rounded-md"
+              className="px-2 py-3 w-full cursor-pointer group dark:hover:bg-gray-400 hover:bg-gray-200 rounded-md dark:text-white"
             >
               <div className="flex justify-between items-center">
                 {/* Left Section */}
@@ -90,24 +90,22 @@ export default function LikedSongs() {
                     </span>
                   </h3>
                 </div>
-                <div
-          className="dropdown dropdown-top dropdown-end"
-        >
-          <IoEllipsisVerticalSharp
-            className="text-sm"
-            tabIndex={0}
-            role="button"
-            onClick={() => toggleDropdown(index)}
-          />
-          {openDropdownIndex === index && (
-            <button
-            className={`dropdown-content menu text-red-600 font-semibold text-md bg-white z-[20] w-56 p-4 px-2 shadow-md absolute`}
-            onClick={() => handleRemoveFromFavourite(song._id)}
-          >
-            Remove from liked song
-          </button>
-          )}
-        </div>
+                <div className="dropdown dropdown-top dropdown-end">
+                  <IoEllipsisVerticalSharp
+                    className="text-sm"
+                    tabIndex={0}
+                    role="button"
+                    onClick={() => toggleDropdown(index)}
+                  />
+                  {openDropdownIndex === index && (
+                    <button
+                      className={`dropdown-content menu text-red-600 font-semibold text-md bg-white z-[20] w-56 p-4 px-2 shadow-md absolute`}
+                      onClick={() => handleRemoveFromFavourite(song._id)}
+                    >
+                      Remove from liked song
+                    </button>
+                  )}
+                </div>
               </div>
             </div>
           ))

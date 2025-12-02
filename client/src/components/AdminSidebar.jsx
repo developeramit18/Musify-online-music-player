@@ -83,13 +83,13 @@ export default function AdminSidebar({ closeSidebar }) {
   }
 
   return (
-    <div className="w-full h-full p-0 lg:p-4 flex flex-col justify-between gap-2 lg:gap-5 ">
+    <div className="w-full h-full p-0 lg:p-4 flex flex-col justify-between gap-2 lg:gap-5 dark:text-white">
       <div className="flex flex-col gap-4">
         <div className="flex items-center gap-4">
           <RiAdminFill className="text-3xl" />
           <div className="flex flex-col">
             <h3 className="font-bold">Admin Dashboard</h3>
-            <p className="text-gray-500">Welcome {userState?.user?.name}</p>
+            <p className="text-gray-500 dark:text-white/60">Welcome {userState?.user?.name}</p>
           </div>
         </div>
         <div className="w-full flex flex-col text-md gap-1 mt-2 lg:mt-5 font-semibold">
@@ -108,7 +108,7 @@ export default function AdminSidebar({ closeSidebar }) {
         </div>
       </div>
       <div
-        className="flex items-center gap-2 hover:bg-gray-200 rounded-md p-2 cursor-pointer"
+        className="flex items-center gap-2 text-red-500 hover:text-red-600 hover:bg-red-200 rounded-md p-2 cursor-pointer"
         title="Logout"
         onClick={handleLogout}
       >

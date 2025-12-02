@@ -116,7 +116,7 @@ export default function MusicPlayer() {
         const nextIndex = (currentIndex + 1) % songs.length;
         setCurrentIndex(nextIndex);
       }
-      if(songs.length === 1){
+      if (songs.length === 1) {
         setPlaySong(false);
       }
     };
@@ -190,104 +190,109 @@ export default function MusicPlayer() {
 
   return (
     <>
-      <div className={`${isFullscreen ? 'hidden' : 'inline-block'} w-screen h-20 flex justify-between items-center px-3 gap-6 `} onClick={toggleFullscreen}>
-      <div className="flex flex-1  justify-start items-center gap-2 ">
-        {songs[currentIndex]?.thumbnail && (
-          <img
-            src={songs[currentIndex]?.thumbnail || ""}
-            alt="Thumbnail"
-            className="w-10 h-10 sm:w-14 sm:h-14 object-cover"
-            onContextMenu={(e) => e.preventDefault()}
-          />
-        )}
-        <div className="flex flex-col max-w-[130px] sm:max-w-[250px] md:max-w-[280px] w-full h-10 sm:h-14">
-          <h3 className="text-sm sm:text-md text-black font-semibold overflow-hidden whitespace-nowrap relative">
-            <span key={animationKey} className="w-fit animate-scroll">
-              {songs[currentIndex]?.title || ""} &nbsp;&nbsp;{" "}
-              {(songs[currentIndex]?.title.length > 40 &&
-                songs[currentIndex]?.title) ||
-                ""}
-            </span>
-          </h3>
-
-          <p className="text-black/80 truncate text-sm md:text-md">
-            {songs[currentIndex]?.artist.map((artist, index) => (
-              <Link
-                to={`/artist/${artist._id}`}
-                onClick={(e)=>e.stopPropagation()}
-                key={artist._id + index}
-                className="hover:underline"
-              >
-                {artist.name}
-                {index < songs[currentIndex]?.artist.length - 1 && ", "}
-              </Link>
-            ))}
-          </p>
-        </div>
-        <div className="ml-auto">
-          {userState?.user?.liked_songs?.some(
-            (s) => s._id === songs[currentIndex]?._id
-          ) ? (
-            <IoRemoveCircleOutline
-              className="text-2xl text-red-500 cursor-pointer"
-              onClick={(e) =>{
-                e.stopPropagation();
-                handleRemoveFromFavourite(songs[currentIndex]?._id)
-              }                
-              }
-            />
-          ) : (
-            <IoAddCircleOutline
-              className="text-2xl text-green-500 cursor-pointer"
-              onClick={(e) => {
-                e.stopPropagation();
-                handleAddToFavourite(songs[currentIndex]?._id)
-              }}
+      <div
+        className={`${
+          isFullscreen ? "hidden" : "inline-block"
+        } w-screen h-16 bg-white dark:bg-gray-700 flex justify-between items-center px-3 gap-6 `}
+        onClick={toggleFullscreen}
+      >
+        <div className="flex flex-1  justify-start items-center gap-2 ">
+          {songs[currentIndex]?.thumbnail && (
+            <img
+              src={songs[currentIndex]?.thumbnail || ""}
+              alt="Thumbnail"
+              className="w-10 h-10 sm:w-14 sm:h-14 object-cover"
+              onContextMenu={(e) => e.preventDefault()}
             />
           )}
-        </div>
-      </div>
+          <div className="flex flex-col max-w-[130px] sm:max-w-[250px] md:max-w-[280px] w-full h-10 sm:h-14">
+            <h3 className="text-sm sm:text-md text-black dark:text-white font-semibold overflow-hidden whitespace-nowrap relative">
+              <span key={animationKey} className="w-fit animate-scroll">
+                {songs[currentIndex]?.title || ""} &nbsp;&nbsp;{" "}
+                {(songs[currentIndex]?.title.length > 40 &&
+                  songs[currentIndex]?.title) ||
+                  ""}
+              </span>
+            </h3>
 
-      {/* Controls */}
-      <div className="flex flex-col items-center md:flex-1 gap-1">
-        <MusicButton
-          playSong={playSong}
-          handleNext={handleNext}
-          handlePrevious={handlePrevious}
-          toggleMusic={toggleMusic}
+            <p className="text-black/80 dark:text-white/60 truncate text-sm md:text-md">
+              {songs[currentIndex]?.artist.map((artist, index) => (
+                <Link
+                  to={`/artist/${artist._id}`}
+                  onClick={(e) => e.stopPropagation()}
+                  key={artist._id + index}
+                  className="hover:underline"
+                >
+                  {artist.name}
+                  {index < songs[currentIndex]?.artist.length - 1 && ", "}
+                </Link>
+              ))}
+            </p>
+          </div>
+          <div className="ml-auto">
+            {userState?.user?.liked_songs?.some(
+              (s) => s._id === songs[currentIndex]?._id
+            ) ? (
+              <IoRemoveCircleOutline
+                className="text-2xl text-red-500 cursor-pointer"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handleRemoveFromFavourite(songs[currentIndex]?._id);
+                }}
+              />
+            ) : (
+              <IoAddCircleOutline
+                className="text-2xl text-green-500 cursor-pointer"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handleAddToFavourite(songs[currentIndex]?._id);
+                }}
+              />
+            )}
+          </div>
+        </div>
+
+        {/* Controls */}
+        <div className="flex flex-col items-center md:flex-1 gap-1">
+          <MusicButton
+            playSong={playSong}
+            handleNext={handleNext}
+            handlePrevious={handlePrevious}
+            toggleMusic={toggleMusic}
+          />
+          <div className="hidden md:flex items-center gap-3 w-full">
+            <h3>{formatTime(currentTime)}</h3>
+            <input
+              type="range"
+              min="0"
+              max={duration} // Total song duration
+              step="0.1"
+              value={currentTime} // Current song progress
+              onChange={handleSeek}
+              className="w-full h-[5px] appearance-none cursor-pointer rounded-md"
+              style={{
+                background: `linear-gradient(to right, #FFCD2B ${
+                  (currentTime / duration) * 100
+                }%, #aaaaaa ${(currentTime / duration) * 100}%)`,
+                outline: "none",
+                border: "none",
+                accentColor: "transparent",
+              }}
+            />
+
+            <h3>{formatTime(duration)}</h3>
+          </div>
+        </div>
+
+        {/* Volume Control */}
+        <VolumeControl
+          volume={volume}
+          setVolume={setVolume}
+          isMuted={isMuted}
+          setIsMuted={setIsMuted}
         />
-        <div className="hidden md:flex items-center gap-3 w-full">
-          <h3>{formatTime(currentTime)}</h3>
-          <input
-  type="range"
-  min="0"
-  max={duration} // Total song duration
-  step="0.1"
-  value={currentTime} // Current song progress
-  onChange={handleSeek}
-  className="w-full h-[5px] appearance-none cursor-pointer rounded-md"
-  style={{
-    background: `linear-gradient(to right, #FFCD2B ${(currentTime / duration) * 100}%, #aaaaaa ${(currentTime / duration) * 100}%)`,
-    outline: "none",
-    border: "none",
-    accentColor: "transparent",
-  }}
-/>
-
-          <h3>{formatTime(duration)}</h3>
-        </div>
       </div>
-
-      {/* Volume Control */}
-      <VolumeControl
-        volume={volume}
-        setVolume={setVolume}
-        isMuted={isMuted}
-        setIsMuted={setIsMuted}
-      />
-    </div>
-    {
-      isFullscreen && (
+      {isFullscreen && (
         <MusicPlayer2
           song={songs[currentIndex]}
           animationKey={animationKey}
@@ -302,9 +307,8 @@ export default function MusicPlayer() {
           handleSeek={handleSeek}
           handleAddToFavourite={handleAddToFavourite}
           handleRemoveFromFavourite={handleRemoveFromFavourite}
-          />
-      )
-    }
+        />
+      )}
     </>
   );
 }

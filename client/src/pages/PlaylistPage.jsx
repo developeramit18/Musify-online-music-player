@@ -131,7 +131,7 @@ export default function PlaylistPage() {
   };
 
   return (
-    <div className="w-full rounded-md overflow-y-auto noScrollbar text-black">
+    <div className="w-full rounded-md overflow-y-auto noScrollbar text-black dark:text-white">
       {loading ? (
         <Loader/>
       ) : (
@@ -143,7 +143,7 @@ export default function PlaylistPage() {
               alt={playlistData.name}
               className="w-44 h-44 object-cover"
             />
-            <h1 className="text-2xl sm:text-3xl md:text-6xl font-bold text-black">
+            <h1 className="text-2xl sm:text-3xl md:text-6xl font-bold text-black dark:text-white">
               {playlistData.name}
             </h1>
           </div>
@@ -157,11 +157,11 @@ export default function PlaylistPage() {
           </div>
           <div className="flex flex-col gap-2 px-0 sm:px-1 md:px-4">
             <h2 className="text-2xl font-semibold">Songs</h2>
-            <div className="flex flex-col gap-2">
+            <div className="flex flex-col gap-2 pb-3">
               {playlistData.songs &&
                 playlistData.songs.map((song, index) => (
                   <div
-                    className="flex items-center justify-between py-2 md:py-4 px-2 md:px-6 cursor-pointer group hover:bg-gray-200 rounded-md"
+                    className="flex items-center justify-between py-2 md:py-4 px-2 md:px-6 cursor-pointer group dark:hover:bg-gray-400 hover:bg-gray-200 rounded-md"
                     key={song._id}
                   >
                     <div

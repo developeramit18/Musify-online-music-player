@@ -76,7 +76,7 @@ export default function Signup() {
   };
   return (
     <div
-      className="w-screen h-screen flex justify-center items-center"
+      className="w-screen h-screen flex justify-center items-center p-4 sm:p-0"
       style={{
         background:
           "linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('musify-bg.jpg')",
@@ -84,11 +84,11 @@ export default function Signup() {
         backgroundSize: "cover",
       }}
     >
-      <div className="max-w-md dark:shadow-[0px_0px_4px_#a1a1a1] bg-white rounded-md shadow-[0px_0px_4px_#555454] w-full flex flex-col items-center p-4 gap-4">
+      <div className="max-w-md dark:shadow-[0px_0px_4px_#a1a1a1] bg-white dark:bg-gray-700 rounded-md shadow-[0px_0px_4px_#555454] w-full flex flex-col items-center p-4 gap-4">
         <Link to={"/"}>
           <Logo size={"extraLarge"} />
         </Link>
-        <h1 className="font-bold text-xl md:text-3xl -mt-2 text-center">
+        <h1 className="font-bold text-xl md:text-3xl -mt-2 text-center dark:text-white">
           Sign up to start listening
         </h1>
         <form
@@ -96,35 +96,35 @@ export default function Signup() {
           onSubmit={handleSubmit}
         >
           <div className="flex flex-col gap-2">
-            <label className="font-medium">Name</label>
+            <label className="font-medium dark:text-white text-black">Name</label>
             <input
               name="name"
               onChange={handleChange}
               type="text"
               placeholder="name"
-              className="border-2 border-black/40 rounded-md px-4 py-2"
+              className="border-2 border-black/40 rounded-md px-4 py-2 dark:bg-white"
             />
           </div>
           <div className="flex flex-col gap-2">
-            <label className="font-medium">Email address</label>
+            <label className="font-medium dark:text-white text-black">Email address</label>
             <input
               name="email"
               onChange={handleChange}
               type="email"
               placeholder="name@domain.com"
-              className="border-2 border-black/40 rounded-md px-4 py-2"
+              className="border-2 border-black/40 rounded-md px-4 py-2 dark:bg-white"
             />
           </div>
 
           <div className="flex flex-col gap-2">
-            <label className="font-medium">Create a strong password</label>
+            <label className="font-medium dark:text-white text-black">Create a strong password</label>
             <div className="relative">
               <input
                 name="password"
                 onChange={handleChange}
                 type={showPassword ? "text" : "password"}
                 placeholder="Password"
-                className="w-full border-2 border-black/40 rounded-md px-4 py-2 pr-8"
+                className="w-full border-2 border-black/40 rounded-md px-4 py-2 pr-8 dark:bg-white"
               />
               {showPassword ? (
                 <VscEyeClosed
@@ -154,7 +154,7 @@ export default function Signup() {
               Already have an account?
             </p>
             <Link
-              className="underline text-black dark:text-white font-bold"
+              className="underline text-black font-bold dark:text-white"
               to={"/signin"}
               replace={true}
             >

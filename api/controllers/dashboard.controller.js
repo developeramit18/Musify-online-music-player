@@ -63,7 +63,7 @@ export const dashboard = async (req, res, next) => {
       recentlyAddedSongs,
       recentlyAddedArtist,
       lastMonthUsers,
-      files,
+      // files,
     ] = await Promise.all([
       Song.countDocuments({}),
       Artist.countDocuments({}),
@@ -72,14 +72,14 @@ export const dashboard = async (req, res, next) => {
       Song.find({}).sort({ createdAt: -1 }).limit(3).select("title createdAt"),
       Artist.find({}).sort({ createdAt: -1 }).limit(3).select("name createdAt"),
       User.countDocuments({ createdAt: { $gte: oneMonthAgo } }),
-      bucket.getFiles(),
+      // bucket.getFiles(),
     ]);
 
     let totalSize = 0;
-    for (const file of files[0]) {
-      const [metadata] = await file.getMetadata();
-      totalSize += Number(metadata.size);
-    }
+    // for (const file of files[0]) {
+    //   const [metadata] = await file.getMetadata();
+    //   totalSize += Number(metadata.size);
+    // }
 
     // Cache in Redis (fail silently if Redis is down)
     // try {
@@ -121,6 +121,7 @@ export const dashboard = async (req, res, next) => {
       totalSize,
     });
   } catch (error) {
+    console.log(error)
     next(error);
   }
 };

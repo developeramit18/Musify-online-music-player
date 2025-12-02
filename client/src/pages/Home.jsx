@@ -86,7 +86,7 @@ export default function Home() {
     };
   }, []);
   return (
-    <div className="flex-1 h-full bg-gray-100 rounded-md overflow-y-auto noScrollbar p-1 md:p-4">
+    <div className="flex-1 h-full bg-gray-100 dark:bg-gray-600 text-black dark:text-white rounded-md overflow-y-auto noScrollbar p-1 md:p-4">
       <div className="relative">
         <h2 className="text-xl md:text-2xl font-bold px-2 md:px-4">Artists</h2>
         <div className="relative">
@@ -95,7 +95,7 @@ export default function Home() {
             <button
             aria-label="scroll-left"
               onClick={() => scroll("left")}
-              className="absolute left-2 top-1/2 transform -translate-y-1/2 z-10 bg-gray-100 p-2 rounded-full shadow-md hover:bg-gray-200"
+              className="absolute left-2 top-1/2 transform -translate-y-1/2 z-[11] bg-gray-100 dark:bg-gray-500 p-2 rounded-full shadow-md hover:bg-gray-200"
             >
               <FaChevronLeft size={20} />
             </button>
@@ -136,7 +136,7 @@ export default function Home() {
             <button
             aria-label="scroll-right"
               onClick={() => scroll("right")}
-              className="absolute right-2 top-1/2 transform -translate-y-1/2 z-10 bg-gray-100 p-2 rounded-full shadow-md hover:bg-gray-200"
+              className="absolute right-2 top-1/2 transform -translate-y-1/2 z-[11] bg-gray-100 dark:bg-gray-500 p-2 rounded-full shadow-md hover:bg-gray-200"
             >
               <FaChevronRight size={20} />
             </button>

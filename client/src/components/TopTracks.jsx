@@ -20,7 +20,7 @@ export default function TopTracks({ song }) {
   return (
     <div
       key={song._id}
-      className="flex group items-center w-full gap-2 md:gap-4 px-2 md:px-4 py-2 bg-gray-100 hover:bg-gray-200 cursor-pointer"
+      className="flex group items-center w-full gap-2 md:gap-4 px-2 md:px-4 py-2 bg-gray-100 dark:bg-transparent dark:hover:bg-gray-400 hover:bg-gray-200 cursor-pointer"
       title={`Play - ${song.title}`}
       onClick={() => handlePlaySong(song)}
     >

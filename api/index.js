@@ -34,7 +34,7 @@ app.use('/api/dashboard',dashboardRoutes);
 app.use('/api/playlist',playlistRoutes);
 
 connectDB();
-job.start();
+// job.start();
 
 app.get('*',(req,res)=>{
       res.sendFile(path.join(__dirname, 'client', 'dist', 'index.html'))

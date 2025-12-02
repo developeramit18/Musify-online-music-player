@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import MusicButton from "./MusicButton";
 import {
   IoAddCircleOutline,
@@ -37,8 +37,19 @@ export default function MusicPlayer2({
     }${seconds}`;
   };
 
+  useEffect(() => {
+      const handleBack = (e) => {
+        e.preventDefault();
+        setIsFullscreen(false)
+      };
+      window.addEventListener("popstate", handleBack);
+      return () => {
+        window.removeEventListener("popstate", handleBack);
+      };
+    }, []);
+
   return (
-    <div className="fixed top-0 left-0 right-0 bottom-0 bg-white z-[10000] w-full h-full p-4">
+    <div className="fixed top-0 left-0 right-0 bottom-0 bg-white dark:text-white dark:bg-gray-700 z-[10000] w-full h-full p-4">
       <div className="w-full h-full flex flex-col justify-between">
         {/* Header */}
         <div
@@ -65,20 +76,20 @@ export default function MusicPlayer2({
         <div className="flex flex-col gap-2">
           {/* Song title and song artist */}
           <div className=" w-full flex justify-between items-center">
-            <div className="flex flex-col gap-0 w-[85%]">
+            <div className="flex flex-col gap-0 w-[85%] ">
               {song?.title ? (
-                <h3 className="text-lg text-black font-semibold overflow-hidden whitespace-nowrap relative">
+                <h3 className="text-lg text-black dark:text-white font-semibold overflow-hidden whitespace-nowrap relative">
                   <span key={animationKey} className="w-fit animate-scroll">
                     {song?.title || ""} &nbsp;&nbsp;{" "}
                     {(song?.title.length > 40 && song?.title) || ""}
                   </span>
                 </h3>
               ) : (
-                <h3 className="text-lg text-black font-semibold overflow-hidden whitespace-nowrap relative">
+                <h3 className="text-lg text-black dark:text-white font-semibold overflow-hidden whitespace-nowrap relative">
                   Title
                 </h3>
               )}
-              <p className="text-black/90 font-medium text-md truncate">
+              <p className="text-black/90 dark:text-white/70 font-medium text-md truncate">
                 {song?.artist &&
                   song.artist.map((artist, index) => (
                     <Link

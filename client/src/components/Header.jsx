@@ -74,7 +74,10 @@ export default function Header() {
 
   useEffect(() => {
     if (search !== "") {
-      handleSearch();
+      const delayDebounceFn = setTimeout(() => {
+        handleSearch();
+      }, 500);
+      return ()=>clearTimeout(delayDebounceFn)
     } else {
       setSearchedData([]);
       setShowSearchData(false);
@@ -82,22 +85,22 @@ export default function Header() {
   }, [search]);
 
   return (
-    <div className="w-screen flex justify-between items-center p-5 ">
+    <div className="w-screen flex justify-between items-center p-5 bg-white dark:bg-gray-700">
       <Link to={"/"}>
         <Logo size={"extraLarge"} />
       </Link>
       <div className="flex items-center justify-center gap-4 w-full lg:max-w-md">
         <div
           onClick={() => navigate("/")}
-          className="w-9 h-9 flex justify-center items-center rounded-full bg-[#464646] hover:bg-[#444444] cursor-pointer"
+          className="w-9 h-9 flex justify-center items-center rounded-full bg-[#464646] dark:bg-gray-500 hover:bg-[#444444] cursor-pointer"
         >
-          <TiHome className="text-white/80 hover:text-white text-xl" />
+          <TiHome className="text-white/80 dark:text-white hover:text-white text-xl" />
         </div>
         <div
-          className={`flex items-center relative gap-2 bg-[#464646] hover:bg-[#444444] p-2 rounded-full cursor-pointer group lg:flex-1`}
+          className={`flex items-center relative gap-2 bg-[#464646] dark:bg-gray-500 hover:bg-[#444444] p-2 rounded-full cursor-pointer group lg:flex-1`}
         >
           <FiSearch
-            className={`text-xl font-bold text-white/80 group-hover:text-white transition-all duration-200`}
+            className={`text-xl font-bold text-white/80 dark:text-white group-hover:text-white transition-all duration-200`}
             title="search"
             onClick={() => setShowSearchModal(!showSearchModal)}
           />
@@ -151,7 +154,7 @@ export default function Header() {
           </div>
         </div>
       ) : (
-        <div className="hidden lg:flex item-center gap-3">
+        <div className="hidden lg:flex item-center gap-3 ">
           <Link
             to={"/signup"}
             replace={true}
@@ -170,7 +173,7 @@ export default function Header() {
       )}
 
       <div
-        className="lg:hidden cursor-pointer text-black"
+        className="lg:hidden cursor-pointer text-black dark:text-white/90"
         onClick={() => setMenuOpen(!menuOpen)}
       >
         {menuOpen ? (
@@ -185,7 +188,7 @@ export default function Header() {
           className="fixed inset-0 bg-black bg-opacity-50 z-50"
           onClick={() => setMenuOpen(false)}
         >
-          <div className="absolute top-0 right-0 w-2/3 h-full bg-white shadow-lg p-5 flex flex-col gap-4">
+          <div className="absolute top-0 right-0 w-2/3 h-full bg-white dark:bg-gray-600 shadow-lg p-5 flex flex-col gap-4">
             {userState.isLoggedIn ? (
               <>
                 {userState?.user?.isAdmin && (
@@ -200,7 +203,7 @@ export default function Header() {
                   </div>
                 )}
                 <Link to={'/liked-songs'}
-                  className="flex items-center gap-2 cursor-pointer shadow-lg text-green-500 font-semibold bg-gray-100 px-3 py-2"
+                  className="flex items-center gap-2 cursor-pointer shadow-lg text-green-500 font-semibold bg-gray-100 dark:bg-gray-600 px-3 py-2"
                   onClick={() => {
                     setMenuOpen(false);
                   }}
@@ -208,7 +211,7 @@ export default function Header() {
                   Liked Songs
                 </Link>
                 <div
-                  className="flex items-center gap-2 cursor-pointer shadow-lg text-red-600 font-semibold bg-gray-100 px-3 py-2"
+                  className="flex items-center gap-2 cursor-pointer shadow-lg text-red-600 font-semibold bg-gray-100 dark:bg-gray-600 px-3 py-2"
                   onClick={() => {
                     handleLogout();
                     setMenuOpen(false);
@@ -221,7 +224,7 @@ export default function Header() {
               <>
                 <Link
                   to="/signup"
-                  className="block px-4 py-2 font-semibold"
+                  className="block px-4 py-2 font-semibold dark:text-white"
                   onClick={() => setMenuOpen(false)}
                 >
                   Sign up
