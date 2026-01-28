@@ -20,6 +20,12 @@ const artistSchema = new mongoose.Schema({
     timestamps:true
 });
 
+artistSchema.virtual('TotalSongs').get(function(){
+    return `${this.name}'s total songs:${this?.songs?.length ?? 0}`
+})
+
+artistSchema.set('toJSON', {virtuals:true})
+artistSchema.set("toObject", { virtuals: true });
 
 const Artist = mongoose.model("Artist", artistSchema);
 

@@ -11,7 +11,7 @@ import { PrivateResetRoute } from "./components/PrivateResetRoute";
 
 const Signin = lazy(() => import("./pages/Singin"));
 const Signup = lazy(() => import("./pages/Signup"));
-const Home = lazy(() => import("./pages/Home"));
+const Home = lazy(() => import("./pages/Home/Home"));
 const AdminDash = lazy(() => import("./pages/AdminDash"));
 const AllSongs = lazy(() => import("./pages/AllSongs"));
 const AllPlaylists = lazy(() => import("./pages/AllPlaylists"));
@@ -21,7 +21,7 @@ const AllUsers = lazy(() => import("./pages/AllUsers"));
 const AllArtists = lazy(() => import("./pages/AllArtists"));
 const AddArtist = lazy(() => import("./pages/AddArtist"));
 const ArtistPlaylist = lazy(() => import("./pages/ArtistPlaylist"));
-const Artist = lazy(() => import("./pages/Artist"));
+const Artist = lazy(() => import("./pages/ArtistPage/Artist"));
 const PlaylistPage = lazy(() => import("./pages/PlaylistPage"));
 const LikedSongs = lazy(() => import("./pages/LikedSongs"));
 const EditSong = lazy(() => import("./pages/EditSong"));

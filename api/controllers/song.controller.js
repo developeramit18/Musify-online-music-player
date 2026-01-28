@@ -139,7 +139,7 @@ export const deleteSong = async (req, res, next) => {
 
   const checkAdmin = await User.findOne({ _id: req.user.id });
   if (checkAdmin.isAdmin === false) {
-    return next(errorHandler(403, "Only admin can upload songs!"));
+    return next(errorHandler(403, "Only admin can delete songs!"));
   }
 
   try {
